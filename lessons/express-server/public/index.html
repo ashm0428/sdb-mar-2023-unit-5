@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Soccer Players</title>
+</head>
+<body>
+    <header class="header">Soccer Players</header>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Position</th>
+                <th>Team</th>
+                <th>Jersey Number</th>
+            </tr>
+        </thead>
+        <!-- Add Player Data Here -->
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Trevor</td>
+                <td>Erwin</td>
+                <td>Forward</td>
+                <td>Upright Ed</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Ashlee</td>
+                <td>Lindstrom</td>
+                <td>Forward</td>
+                <td>Upright Ed</td>
+                <td>15</td>
+            </tr>
+        </tbody>
+    </table>
+<!-- Form -->
+<div class="form-container">
+    <h2>Soccer Player Form</h2>
+    <form>
+        <!-- Form Field -->
+        <label for="first-name">First Name: </label>
+        <input type="text" id="first-name" placeholder="Enter first name..." name="firstName" />
+        <!-- Form Field End -->
+        <!-- Form Field -->
+        <label for="last-name">Last Name: </label>
+        <input type="text" id="last-name" placeholder="Enter last name..." name="lastName" />
+        <!-- Form Field End -->
+        <!-- Form Field -->
+        <label for="position">Position: </label>
+        <input type="text" id="position" placeholder="Enter position..." name="position" />
+        <!-- Form Field End -->
+        <!-- Form Field -->
+        <label for="team">Team: </label>
+        <input type="text" id="team" placeholder="Enter team name..." name="team" />
+        <!-- Form Field End -->
+        <!-- Form Field -->
+        <label for="jersey-number">Jersey Number: </label>
+        <input type="text" id="jersey-number" placeholder="Enter jersey number..." name="jerseyNumber" />
+        <!-- Form Field End -->
+
+        <!-- Submit Button -->
+        <input type="submit" value="SUBMIT" />
+    </form>
+</div>
+
+    <script src="index.js"></script>
+</body>
+</html>
