@@ -1,7 +1,7 @@
 console.log("it works from soccer")
 
 let tableBody = document.querySelector("tbody");
-
+let playerSelectElement = document.querySelector("#player-select");
 // tableBody.innerHTML = ` 
 
 
@@ -21,6 +21,17 @@ function displayInnerHTML(playerArray) {
     }
     tableBody.innerHTML = htmlString;
 }
+
+
+function populatePlayerDropDown(playerArray) {
+    playerSelectElement.innerHTML = "";
+    let htmlString = "";
+    for(let i=0; i < playerArray.length; i++)  {
+        htmlString += `<option value = "${i}">${playerArray[i].firstName} ${playerArray[i].lastName}</option>`;
+    }
+    playerSelectElement.innerHTML = htmlString;
+}
+
 
 function displayPlayers(playerArray) {
     // Clear out the ninerHTML of the tbody
@@ -57,6 +68,7 @@ async function getAllPlayers() {
         let data = await response.json();
         // displayInnerHtml(data.player)
         displayPlayers(data.player);
+        populatePlayerDropDown(data.player);
     } catch (error) {
         console.log(error);
     }
@@ -96,3 +108,29 @@ async function submitNewPlayer(e) {
 
 }
 
+let removePlayerForm = document.querySelector("#remove-player-form")
+removePlayerForm.addEventListener("submit", submitForRemoval);
+
+async function submitForRemoval(e) {
+    e.preventDefault();
+    try {
+    // 1. Get the value of the current selection
+        let playerIndex = playerSelectElement.value;
+        console.log(playerIndex);
+    // 2. Build our URL out where we can delete 
+        let url = `http://localhost:4000/player/delete/${playerIndex}`
+    // 3. Create Request Options
+        let requestOptions = {
+            method: "DELETE",
+        };
+    // 4. Conduct the fetch
+        const response = await fetch(url, requestOptions);
+        const data = await response.json();
+        console.log(data);
+    // 5. If successful then we need to re-populate the table & the dropdown list
+        getAllPlayers();
+        
+    } catch (error) {
+        console.error(error);
+    }
+}

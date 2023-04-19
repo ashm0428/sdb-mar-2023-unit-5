@@ -14,6 +14,12 @@
     text-shadow: 2px 2px var(--brown);
 }
 
+.column {
+    display: flex;
+    align-items: flex-start;
+    margin: 0 10px;
+}
+
 table{
     border-collapse: collapse;
     width: 100%;
@@ -54,7 +60,7 @@ label {
     color: var(--primary);
 }
 
-input[type="text"] {
+input[type="text"], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0px;

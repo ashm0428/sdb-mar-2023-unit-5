@@ -41,33 +41,49 @@
         </tbody>
     </table>
 <!-- Form -->
-<div class="form-container">
-    <h2>Soccer Player Form</h2>
-    <form>
-        <!-- Form Field -->
-        <label for="first-name">First Name: </label>
-        <input type="text" id="first-name" placeholder="Enter first name..." name="firstName" />
-        <!-- Form Field End -->
-        <!-- Form Field -->
-        <label for="last-name">Last Name: </label>
-        <input type="text" id="last-name" placeholder="Enter last name..." name="lastName" />
-        <!-- Form Field End -->
-        <!-- Form Field -->
-        <label for="position">Position: </label>
-        <input type="text" id="position" placeholder="Enter position..." name="position" />
-        <!-- Form Field End -->
-        <!-- Form Field -->
-        <label for="team">Team: </label>
-        <input type="text" id="team" placeholder="Enter team name..." name="team" />
-        <!-- Form Field End -->
-        <!-- Form Field -->
-        <label for="jersey-number">Jersey Number: </label>
-        <input type="text" id="jersey-number" placeholder="Enter jersey number..." name="jerseyNumber" />
-        <!-- Form Field End -->
-
-        <!-- Submit Button -->
-        <input type="submit" value="SUBMIT" />
-    </form>
+<div class="column">
+    <div class="form-container">
+        <h2>Soccer Player Form</h2>
+        <form>
+            <!-- Form Field -->
+            <label for="first-name">First Name: </label>
+            <input type="text" id="first-name" placeholder="Enter first name..." name="firstName" />
+            <!-- Form Field End -->
+            <!-- Form Field -->
+            <label for="last-name">Last Name: </label>
+            <input type="text" id="last-name" placeholder="Enter last name..." name="lastName" />
+            <!-- Form Field End -->
+            <!-- Form Field -->
+            <label for="position">Position: </label>
+            <input type="text" id="position" placeholder="Enter position..." name="position" />
+            <!-- Form Field End -->
+            <!-- Form Field -->
+            <label for="team">Team: </label>
+            <input type="text" id="team" placeholder="Enter team name..." name="team" />
+            <!-- Form Field End -->
+            <!-- Form Field -->
+            <label for="jersey-number">Jersey Number: </label>
+            <input type="text" id="jersey-number" placeholder="Enter jersey number..." name="jerseyNumber" />
+            <!-- Form Field End -->
+    
+            <!-- Submit Button -->
+            <input type="submit" value="SUBMIT" />
+        </form>
+    </div>
+    <!-- Delete PLayer Form -->
+    <div class="form-container">
+        <form id="remove-player-form">
+            <h2>Remove Player Form</h2>
+            <!-- Select Option Box -->
+            <label for="player-select">Choose Player: </label>
+            <select name="player" id="player-select">
+                <option value="0" >Trevor Striker</option>
+                <option value="1" >Simon Davis</option>
+            </select>
+            <!-- SUBMIT FOR DELETE BUTTON -->
+            <input type="submit" value="DELETE PLAYER" />
+        </form>
+    </div>
 </div>
 
     <script src="index.js"></script>
