@@ -1,6 +1,6 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = 4000;
 const practiceController = require("./controllers/practice.controller");
 const playerController = require("./controllers/player.controller");
  
@@ -17,8 +17,8 @@ app.use("/practice", practiceController);
 app.use("/weather", practiceController);
 app.use("/player", playerController);
 
-app.listen(PORT, () => {
-    console.log(`server is running on port: ${PORT}`)
+app.listen(process.env.PORT, () => {
+    console.log(`server is running on port: ${process.env.PORT}`)
 });
 
 

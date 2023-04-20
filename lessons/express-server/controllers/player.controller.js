@@ -4,6 +4,8 @@ const dbPath = "./assets/player-db.json";
 
 const fs = require("fs");
 //! FS give us access to the file system that is built-in with node
+const { v4: uuidv4 } = require('uuid');
+
 // https:localhost:4000/player/add
 
 let playerArray = [];
@@ -17,6 +19,7 @@ try {
         const {firstName, lastName, position, team, jerseyNumber} = req.body;
         // 2. Create the object so it will be inserted into the playerArray
         const playerObject = {
+            _id: uuidv4(),
             firstName: firstName.toUpperCase(),
             lastName: lastName.toUpperCase(),
             position: position,
@@ -47,51 +50,59 @@ router.get("/view-all", (req, res) => {
 })
 
 
-//! Delete one player
-// http://localhost:4000/player/delete
+// ! Delete one player
+// http://localhost:4000/player/delete/:id
+router.delete("/delete/:id", (req, res) => {
+  let playerArray = read();
+  try {
+    let id = req.params.id; //! changed to id
 
-router.delete("/delete/:index", (req, res) => {
-    let playerArray = read();
-    try {
-        let index = req.params.index;
-        console.log(index);
-        if(isNaN(index)){
-            throw Error("Error: The index provided was not a number.")
-        }
-        playerArray = removeOne(+index, playerArray);
-        save(playerArray);
-        res.json({message: "player removed", player: playerArray})
-    } catch (error) {
-        console.error(error)
-    }
-})
+    console.log(playerArray.length);
+    let index = playerArray.findIndex((player) => player._id == id);
 
-//! Update a Player
-// http://localhost:4000/player/update/:index
-router.patch("/update/:index", (req, res) => {
-    let playerArray = read();
-    try {
-        // 1. Pull out the keys from the req.boedy
-        const {firstName, lastName, position, team, jerseyNumber} = req.body;
-        // 2. Create the object so it will be inserted into the playerArray
-        const playerObject = {
-            firstName: firstName.toUpperCase(),
-            lastName: lastName.toUpperCase(),
-            position: position,
-            team: team,
-            jerseyNumber: jerseyNumber,
-        };
-        // 3. Assign the index value
-        let index = req.params.index;
-        // 4. update the array
-        playerArray = updateOne(+index, playerObject, playerArray);
-        // 5. 
-        save(playerArray);
-        res.json({message: "player updated", player: playerArray});
-    } catch (error) {
-    res.json({message: error.message});
-    }
-})
+    playerArray = removeOne(index, playerArray); //! supplying the index to remove and the array to delete from. Changed to id
+    console.log(playerArray.length);
+    save(playerArray);
+    res.json({ message: "player removed", player: playerArray });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
+
+
+// ! Update a player
+// http://localhost:4000/player/update/?id=[uuid]
+router.patch("/update/", (req, res) => {
+  let playerArray = read();
+
+  try {
+    // 1. Pull out the keys from the req.body
+    const { firstName, lastName, position, team, jerseyNumber } = req.body;
+    // 2. Create the object so it will inserted into the playerArray
+    const playerObject = {
+      _id: id,
+      firstName: firstName.toUpperCase(),
+      lastName: lastName.toUpperCase(),
+      position: position,
+      team: team,
+      jerseyNumber: jerseyNumber,
+    };
+
+    // 3. assign the index value
+    let id = req.query.id
+    let index = playerArray.findIndex((player) => player._id == id);
+
+  
+    // 4. update the array
+    playerArray = updateOne(+index, playerObject, playerArray);
+    // 5. save the playerArray
+    save(playerArray);
+
+    res.json({ message: "player updated", player: playerArray });
+  } catch (error) {
+    res.json({ message: error.message });
+  }
+});
 
 function updateOne(indexNumber, newObject, myArray) {
     // update only that index and return the entire array.
